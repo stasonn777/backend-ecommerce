@@ -47,9 +47,4 @@ const OrderSchema = mongoose.Schema(
   { timestamps: true }
 )
 
-OrderSchema.pre('save', function (next) {
-  this.tags = _.uniq(this.tags);
-  next();
-});
-
 module.exports = mongoose.model('order', OrderSchema)
