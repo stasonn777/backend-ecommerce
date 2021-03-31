@@ -19,7 +19,7 @@ app.use('/api/orders', require('./routes/orders'))
 app.use('/api/users', require('./routes/users'))
 app.use('/api/customers', require('./routes/customers'))
 app.use('/api/auth', require('./routes/userAuth'))
-app.use('/api/account', require('./routes/customerAuth'))
+app.use('/api/account', require('./routes/customerauth'))
 
 const PORT = process.env.PORT || 5000
 
