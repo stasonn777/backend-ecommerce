@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 
 const ProductSchema = mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
       unique: true,
       trim: true,
     },
-    featuredImgs: {
+    featuredImg: {
       type: String,
       required: true,
     },
@@ -16,7 +16,6 @@ const ProductSchema = mongoose.Schema(
       {
         url: {
           type: String,
-          required: true,
         },
       },
     ],
@@ -27,7 +26,6 @@ const ProductSchema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
     },
     price: {
       type: Number,
@@ -45,7 +43,7 @@ const ProductSchema = mongoose.Schema(
       {
         color: { type: String },
         size: { type: String },
-        others: [{ name: { type: String } }],
+        others: [{ option: { type: String } }],
       },
     ],
     categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'category' }],
@@ -55,7 +53,7 @@ const ProductSchema = mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: 'customer',
         },
-        name: {
+        revName: {
           type: String,
           required: true,
         },

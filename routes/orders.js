@@ -3,7 +3,7 @@ const router = express.Router()
 const customerauth = require('../middleware/customerauth')
 const { body, validationResult } = require('express-validator')
 
-const Customer = require('../models/Customer')
+// const Customer = require('../models/Customer')
 const Order = require('../models/Order')
 
 // @route       GET api/orders
@@ -55,7 +55,7 @@ router.post(
 
       res.json(order)
     } catch (err) {
-      console.error(err,message)
+      console.error(err.message)
       res.status(500).send('Server Error')
     }
   }
