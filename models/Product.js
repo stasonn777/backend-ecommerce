@@ -10,7 +10,7 @@ const ProductSchema = mongoose.Schema(
     },
     featuredImg: {
       type: String,
-      required: true,
+      required: false,
     },
     images: [
       {
@@ -31,6 +31,15 @@ const ProductSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    newPrice: {
+      type: Number,
+    },
+    color: {
+      type: String,
+    },
+    size: {
+      type: String,
+    },
     countInStock: {
       type: Number,
       required: true,
@@ -39,13 +48,7 @@ const ProductSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
-    options: [
-      {
-        color: { type: String },
-        size: { type: String },
-        others: [{ option: { type: String } }],
-      },
-    ],
+    options: [{ id: {type: String}, name: { type: String }, value: { type: String}, type: {type: String}}],
     categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'category' }],
     reviews: [
       {
@@ -67,6 +70,15 @@ const ProductSchema = mongoose.Schema(
         },
       },
     ],
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+    },
+    status: {
+      type: String,
+      enum: ['saved', 'published', 'draft'],
+      default: 'saved',
+    },
   },
   { timestamps: true }
 )
