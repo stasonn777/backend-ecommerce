@@ -4,6 +4,7 @@ const userauth = require('../middleware/userauth')
 const { body, validationResult } = require('express-validator')
 
 const Product = require('../models/Product')
+const Category = require('../models/productCategories')
 
 // @route       GET api/products
 // @desc        Get all products
@@ -147,10 +148,19 @@ router.put('/:id', userauth, async (req, res) => {
       { new: true }
     )
 
+    await categories.forEach(async (cat) => {
+      const {products} = await Category.findById(cat)
+      await Category.findByIdAndUpdate(
+        cat,
+          { $set: { products: [...new Set([...products, req.params.id])] }},
+          { new: true }
+      )
+    })
+
     res.json(product)
   } catch (err) {
     console.error(err.message)
-    res.status(500).send('Server error')
+    res.status(500).send({msg: err.message, type: 'Server error'})
   }
 })
 
