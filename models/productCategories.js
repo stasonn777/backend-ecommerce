@@ -8,13 +8,21 @@ const ProductCategorySchema = mongoose.Schema(
       unique: true,
       trim: true,
     },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
     image: {
       type: String,
     },
     description: {
       type: String,
     },
-    parent: [this],
+    parent: {
+      type: String,
+    },
     products: {
       type: Array,
       list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],

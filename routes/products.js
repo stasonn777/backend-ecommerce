@@ -148,7 +148,7 @@ router.put('/:id', userauth, async (req, res) => {
       { new: true }
     )
 
-    await categories.forEach(async (cat) => {
+    categories.forEach(async (cat) => {
       const {products} = await Category.findById(cat)
       await Category.findByIdAndUpdate(
         cat,
